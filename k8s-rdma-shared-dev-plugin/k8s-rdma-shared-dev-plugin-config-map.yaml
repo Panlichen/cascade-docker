@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rdma-devices
+  namespace: kube-system
+data:
+  config.json: |
+    {
+        "periodicUpdateInterval": 300,
+        "configList": [{
+             "resourceName": "MLNX_VF",
+             "rdmaHcaMax": 1000,
+             "selectors": {
+                "ifNames": ["enp3s1f2", "enp3s1f3", "enp3s1f4", "enp3s1f5", "enp3s1f6", "enp3s1f7", "enp3s2", "enp3s2f1", "enp3s7f6", "enp3s7f7", "enp3s8", "enp3s8f1", "enp3s8f2", "enp3s8f3", "enp3s8f4", "enp3s8f5"]
+              }
+           }
+        ]
+    }
