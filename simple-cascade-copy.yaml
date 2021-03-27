@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: simple-cascade-normal
+  name: simple-cascade
   labels:
-    k8s-app: simple-cascade-normal
-  annotations:
-    k8s.v1.cni.cncf.io/networks: macvlan-conf
+    k8s-app: simple-cascade
+  # annotations:
+  #   k8s.v1.cni.cncf.io/networks: sriov-net1
 spec:
   selector:
     matchLabels:
-      name: simple-cascade-normal
+      name: simple-cascade
   template:
     metadata:
       labels:
-        name: simple-cascade-normal
-      annotations:
-        k8s.v1.cni.cncf.io/networks: macvlan-conf
+        name: simple-cascade
+      # annotations:
+      #   k8s.v1.cni.cncf.io/networks: sriov-net1
     spec:
       tolerations:
       # this toleration is to have the daemonset runnable on master nodes
@@ -23,18 +23,24 @@ spec:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
       containers:
-      - name: simple-cascade-normal
+      - name: simple-cascade
         image: poanpan/cascade:no-mxnet-no-overcommitMem
         imagePullPolicy: IfNotPresent
+        securityContext:
+          privileged: true
+          capabilities:
+            add: [ "IPC_LOCK" ]
         resources:
           requests: 
             cpu: "1000m"
             memory: "500Mi"
             # mellanox.com/mlx5_vf: 1
+            rdma/MLNX_VF: 1
           limits:
             cpu: "2000m"
             memory: "1000Mi"
             # mellanox.com/mlx5_vf: 1
+            rdma/MLNX_VF: 1
         command:
           - "sleep"
         args:
