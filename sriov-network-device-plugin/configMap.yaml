@@ -11,9 +11,8 @@ data:
                 "resourceName": "mlx5_vf",
                 "resourcePrefix": "mellanox.com",
                 "selectors": {
-                    "pfNames": ["ens1f1"],
-                    "isRdma": true,
-                    "needVhostNet": true
+                    "pfNames": ["eno50"],
+                    "isRdma": true
                 }
             }
         ]

@@ -3,7 +3,7 @@ kind: Pod
 metadata:
   name: testpod2
   annotations:
-    k8s.v1.cni.cncf.io/networks: sriov-net1
+    k8s.v1.cni.cncf.io/networks: sriov-net
 spec:
   containers:
   - name: appcntr2 
