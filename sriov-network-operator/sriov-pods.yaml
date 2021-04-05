@@ -9,7 +9,7 @@ spec:
   restartPolicy: OnFailure
   containers:
   # - image: mellanox/rping-test
-  - image: ubuntu:18.04
+  - image: poanpan/ubuntu-net-rdma
     name: mofed-test-ctr
     securityContext:
       privileged: true
@@ -41,7 +41,7 @@ spec:
   restartPolicy: OnFailure
   containers:
   # - image: mellanox/rping-test
-  - image: ubuntu:18.04
+  - image: poanpan/ubuntu-net-rdma
     name: mofed-test-ctr
     securityContext:
       privileged: true
