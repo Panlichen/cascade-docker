@@ -1,0 +1,18 @@
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetworkNodePolicy
+metadata:
+  name: policy-1
+  namespace: sriov-network-operator
+spec:
+  nodeSelector:
+    feature.node.kubernetes.io/network-sriov.capable: "true"
+  resourceName: mlx5_vf
+  priority: 99
+  mtu: 1500
+  numVfs: 8
+  nicSelector:
+      deviceID: "1015"
+      rootDevices:
+      - 0000:07:00.1
+      vendor: "15b3"
+  deviceType: netdevice

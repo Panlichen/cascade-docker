@@ -1,0 +1,29 @@
+apiVersion: sriovnetwork.openshift.io/v1
+kind: SriovNetwork
+metadata:
+  name: sriov-net
+  namespace: sriov-network-operator
+spec:
+  ipam: | 
+    {
+        "type": "whereabouts",
+        "datastore": "kubernetes",
+        "kubernetes": { "kubeconfig": "/etc/cni/net.d/whereabouts.d/whereabouts.kubeconfig" },
+        "range": "10.56.217.0/24",
+        "range_start": "10.56.217.171",
+        "log_file" : "/tmp/whereabouts.log",
+        "gateway": "10.56.217.1"
+      }
+  vlan: 0
+  resourceName: mlx5_vf
+
+    # {
+    #   "type": "whereabouts",
+    #   "subnet": "10.56.217.0/24",
+    #   "rangeStart": "10.56.217.171",
+    #   "rangeEnd": "10.56.217.181",
+    #   "routes": [{
+    #     "dst": "0.0.0.0/0"
+    #   }],
+    #   "gateway": "10.56.217.1"
+    # }

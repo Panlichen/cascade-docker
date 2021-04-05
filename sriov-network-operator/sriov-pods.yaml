@@ -1,6 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
+  namespace: sriov-network-operator
   name: old-mofed-test-pod
   annotations:
     k8s.v1.cni.cncf.io/networks: sriov-net
@@ -16,9 +17,9 @@ spec:
         add: [ "IPC_LOCK" ]
     resources:
       requests:
-        mellanox.com/mlx5_vf: '1'
+        openshift.io/mlx5_vf: '1'
       limits:
-        mellanox.com/mlx5_vf: '1'
+        openshift.io/mlx5_vf: '1'
     command:
     - sh
     - -c
@@ -32,6 +33,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
+  namespace: sriov-network-operator
   name: old-mofed-test-pod1
   annotations:
     k8s.v1.cni.cncf.io/networks: sriov-net
@@ -47,9 +49,9 @@ spec:
         add: [ "IPC_LOCK" ]
     resources:
       requests:
-        mellanox.com/mlx5_vf: '1'
+        openshift.io/mlx5_vf: '1'
       limits:
-        mellanox.com/mlx5_vf: '1'
+        openshift.io/mlx5_vf: '1'
     command:
     - sh
     - -c
