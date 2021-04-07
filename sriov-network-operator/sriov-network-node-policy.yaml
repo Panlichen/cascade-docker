@@ -1,9 +1,10 @@
 apiVersion: sriovnetwork.openshift.io/v1
-kind: SriovNetworkNodePolicy
+kind:  
 metadata:
   name: policy-1
   namespace: sriov-network-operator
 spec:
+  isRdma: true
   nodeSelector:
     feature.node.kubernetes.io/network-sriov.capable: "true"
   resourceName: mlx5_vf
