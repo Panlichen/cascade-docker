@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: old-mofed-test-pod
+  name: old-mofed-test-pod-ubuntu
   annotations:
     k8s.v1.cni.cncf.io/networks: sriov-net
 spec:
   restartPolicy: OnFailure
   containers:
-  - image: poanpan/mlnx_ofed_linux-5.3-1.0.0.1-centos7.9
+  - image: poanpan/mlnx_ofed_linux-5.3-1.0.0.1-ubuntu18.04
     name: mofed-test-ctr
     securityContext:
       # privileged: true
@@ -31,13 +31,13 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: old-mofed-test-pod1
+  name: old-mofed-test-pod-ubuntu1
   annotations:
     k8s.v1.cni.cncf.io/networks: sriov-net
 spec:
   restartPolicy: OnFailure
   containers:
-  - image: poanpan/mlnx_ofed_linux-5.3-1.0.0.1-centos7.9
+  - image: poanpan/mlnx_ofed_linux-5.3-1.0.0.1-ubuntu18.04
     name: mofed-test-ctr
     securityContext:
       # privileged: true
