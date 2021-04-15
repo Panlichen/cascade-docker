@@ -8,11 +8,9 @@ metadata:
 spec:
   restartPolicy: OnFailure
   containers:
-  # - image: mellanox/rping-test
-  - image: poanpan/ubuntu-net-rdma
+  - image: poanpan/mlnx_ofed_linux-5.3-1.0.0.1-ubuntu18.04
     name: mofed-test-ctr
     securityContext:
-      privileged: true
       capabilities:
         add: [ "IPC_LOCK" ]
     resources:
@@ -40,11 +38,9 @@ metadata:
 spec:
   restartPolicy: OnFailure
   containers:
-  # - image: mellanox/rping-test
-  - image: poanpan/ubuntu-net-rdma
+  - image: poanpan/mlnx_ofed_linux-5.3-1.0.0.1-ubuntu18.04
     name: mofed-test-ctr
     securityContext:
-      privileged: true
       capabilities:
         add: [ "IPC_LOCK" ]
     resources:
