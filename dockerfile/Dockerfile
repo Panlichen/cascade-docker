@@ -6,6 +6,7 @@ WORKDIR /root
 COPY install-and-build.sh /root/install-and-build.sh
 COPY prerequisites/ /root/prerequisites
 COPY build/ /root/build
+ARG CASCADE_BRANCH=master
 RUN ["chmod", "+x", "/root/install-and-build.sh"]
 
 RUN ["bash", "/root/install-and-build.sh"]

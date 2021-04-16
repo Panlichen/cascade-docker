@@ -1,0 +1,8 @@
+FROM poanpan/cascade:mxnet
+MAINTAINER myles.l.pan@gmail.com
+
+COPY build/ /root/build
+RUN ["chmod", "+x", "/root/build/build-cascade.sh"]
+
+ARG CASCADE_BRANCH=master
+RUN ["/root/build/build-cascade.sh"]
