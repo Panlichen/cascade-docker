@@ -2,10 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cascade-deploy
+  # namespace: sriov-network-operator
   labels:
     k8s-app: cascade-deploy
 spec:
-  replicas: 4
+  replicas: 5
   selector:
     matchLabels:
       name: cascade-deploy
@@ -14,7 +15,7 @@ spec:
       labels:
         name: cascade-deploy
       annotations:
-        k8s.v1.cni.cncf.io/networks: sriov-net1
+        k8s.v1.cni.cncf.io/networks: sriov-net
     spec:
       tolerations:
       # this toleration is to have the daemonset runnable on master nodes
@@ -23,7 +24,7 @@ spec:
         effect: NoSchedule
       containers:
       - name: cascade-deploy
-        image: poanpan/cascade:no-mxnet-no-overcommitMem
+        image: poanpan/cascade:master
         imagePullPolicy: IfNotPresent
         securityContext:
           privileged: true
@@ -31,11 +32,11 @@ spec:
           requests: 
             cpu: "1000m"
             memory: "500Mi"
-            mellanox.com/mlx5_vf: 1
+            openshift.io/mlx5_vf: 1
           limits:
             cpu: "2000m"
             memory: "1000Mi"
-            mellanox.com/mlx5_vf: 1
+            openshift.io/mlx5_vf: 1
         command:
           - "sleep"
         args:
