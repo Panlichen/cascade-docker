@@ -27,7 +27,8 @@ spec:
         image: poanpan/cascade:master
         imagePullPolicy: IfNotPresent
         securityContext:
-          privileged: true
+          capabilities:
+            add: [ "IPC_LOCK" ]
         resources:
           requests: 
             cpu: "1000m"
