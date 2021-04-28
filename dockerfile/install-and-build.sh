@@ -15,8 +15,6 @@ apt-get -y install autoconf vim net-tools libssl-dev libreadline-dev libsnappy-d
 libboost-dev libboost-system-dev \
 libtool m4 automake wget curl make unzip iputils-ping git --fix-missing
 
-export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
-
 chmod +x prerequisites/install-cmake-3.18.sh
 prerequisites/install-cmake-3.18.sh
 chmod +x prerequisites/install-spdlog.sh
