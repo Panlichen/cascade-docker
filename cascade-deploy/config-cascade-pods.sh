@@ -30,7 +30,7 @@ for (( i=0; i<${#IP_ARRAY[*]}; i++ )); do
   vf_ca=`kubectl exec ${POD_ARRAY[${i}]} -- ibv_devices | awk '/mlx/ {print $1}'`
 
   cmd="kubectl exec -it ${POD_ARRAY[${i}]} \
-  -- /root/config/config-cascade.sh ${LEADER_IP} ${IP_ARRAY[${i}]} ${i} verbs ${vf_ca}"
+  -- /root/scripts/config-cascade.sh ${LEADER_IP} ${IP_ARRAY[${i}]} ${i} verbs ${vf_ca}"
   echo $cmd
   $cmd
   

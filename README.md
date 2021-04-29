@@ -409,7 +409,7 @@ kubectl apply -f <path-to-this-repo>/sriov-network-operator/sriov-network-node-p
 
   - We configure the resource prefix and name as "openshift.io" and "mlx5_vf" respectively when deploying sriov-network-operator.
 
-## Run containers(pods) and allocate VF into them
+## Run containers(pods), allocate VF into them, and configure derecho.cfg automatically
 
 Create sriov-network CR:
 
@@ -417,7 +417,15 @@ Create sriov-network CR:
 kubectl apply -f <path-to-this-repo>/sriov-network-operator/sriov-network.yaml
 ```
 
-Deploy cascade containers:
+For different applications, details about `derecho.cfg` may be different, thus we need to mount `derecho.cfg.template` to the container when it's launched via configMap.
+
+```shell
+kubectl apply -f <path-to-this-repo>/cascade-deploy/cascade-datapath-cmap.yaml
+```
+
+> If you need different derecho.cfg.template, create your configMap and edit `configMap.name` in cascade-deploy.yaml accordingly.
+
+Deploy cascade pods:
 
 ```shell
 kubectl apply -f <path-to-this-repo>/cascade-deploy/cascade-deploy.yaml
@@ -434,15 +442,14 @@ root@cascade-deploy-79779f66bd-lsxj9:~# ibv_devices
 root@cascade-deploy-79779f66bd-lsxj9:~#
 ```
 
-Now you can edit the derecho.cfg and run cascade applications.
 
-> Inside the container, the path to cascade dir is `/root/cascade`.
-
-## Configure derecho.cfg automatically
-
-After cascade-deploy.yaml is deployed, just run `<path-to-this-repo>cascade-deploy/config-cascade-pods.sh` and you can get `/root/derecho.cfg` inside the contaienr with `leader_ip`, `domain`, etc. configured properly.
+After cascade-deploy.yaml is deployed, just run `<path-to-this-repo>/cascade-deploy/config-cascade-pods.sh` and you can get `/root/derecho.cfg` inside the contaienr with `leader_ip`, `domain`, etc. configured properly.
 
 > The `DERECHO_CONF_FILE` environment variable is set as `/root/derecho.cfg` in Dockerfiles.
 
-TODO: For different applications, the `derecho.cfg.template` may be different, thus we need to mount it to the container when it's launched, not burn it into the image.
+Now you are free to run your cascade applications.
+>  Inside the container, the path to cascade dir is `/root/cascade`.
+
+
+
 

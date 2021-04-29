@@ -42,4 +42,14 @@ spec:
           - "sleep"
         args:
           - "2592000" # 3600 * 24 * 30
+        volumeMounts:
+        - name: cfg-template
+          mountPath: /root/config
       restartPolicy: Always
+      volumes:
+      - name: cfg-template
+        configMap:
+          name: datapath-cfg-template
+          items:
+          - key: derecho.cfg.template
+            path: derecho.cfg.template
