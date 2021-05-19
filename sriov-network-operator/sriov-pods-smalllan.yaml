@@ -24,7 +24,7 @@ spec:
     - |
       ls -l /dev/infiniband /sys/class/net
       sleep 1000000
-  nodeName: node-0
+  nodeName: node0
 
 ---
 
@@ -54,4 +54,4 @@ spec:
     - |
       ls -l /dev/infiniband /sys/class/net
       sleep 1000000
-  nodeName: node-1
+  nodeName: node1
