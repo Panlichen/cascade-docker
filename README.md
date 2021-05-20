@@ -443,7 +443,7 @@ root@cascade-deploy-79779f66bd-lsxj9:~#
 ```
 
 
-After cascade-deploy.yaml is deployed, just run `<path-to-this-repo>/cascade-deploy/config-cascade-pods.sh` and you can get `/root/derecho.cfg` inside the contaienr with `leader_ip`, `domain`, etc. configured properly.
+After cascade-deploy.yaml is deployed, just run `<path-to-this-repo>/cascade-deploy/config-cascade-pods.sh cascade-deploy` and you can get `/root/derecho.cfg` inside the container with `leader_ip`, `domain`, etc. configured properly.
 
 > The `DERECHO_CONF_FILE` environment variable is set as `/root/derecho.cfg` in Dockerfiles.
 

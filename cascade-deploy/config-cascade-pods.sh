@@ -1,9 +1,19 @@
 #! /bin/bash
 
+if [ $# != 1 ] ; then
+  echo "USAGE: $0 <string of deploy>"
+  exit 1;
+fi
+
+key=$1
+
 # get pod ips and names
-kubectl get pod -o wide | grep cascade | cat > info.txt 
-IPs=`awk '/cascade/ {print $6}' info.txt`
-PODs=`awk '/cascade/ {print $1}' info.txt`
+kubectl get pod -o wide | grep $1 | cat > info.txt 
+IPs=`awk '$key {print $6}' info.txt`
+PODs=`awk '$key {print $1}' info.txt`
+
+cat info.txt
+
 IP_ARRAY=()
 POD_ARRAY=()
 
