@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: derecho-json-cfg-template
+  name: derecho-json-file-cfg-template
 data:
   derecho.cfg.template: |
     [DERECHO]
@@ -47,31 +47,7 @@ data:
     # window size for P2P requests and replies
     p2p_window_size = 16
     # json layout string
-    json_layout = '
-    [
-        {
-            "type_alias":   "Foo",
-            "layout":       [
-                                {
-                                    "min_nodes_by_shard": [3],
-                                    "max_nodes_by_shard": [3],
-                                    "delivery_modes_by_shard": ["Ordered"],
-                                    "profiles_by_shard": ["VCS"]
-                                }
-                            ]
-        },
-        {
-            "type_alias":   "Bar",
-            "layout":       [
-                                {
-                                    "min_nodes_by_shard": [3],
-                                    "max_nodes_by_shard": [3],
-                                    "delivery_modes_by_shard": ["Ordered"],
-                                    "profiles_by_shard": ["DEFAULT"]
-                                }
-                            ]
-        }
-    ]'
+    json_layout_path = '/root/config/layout.json'
 
     # Subgroup configurations
     # - The default subgroup settings
@@ -172,3 +148,28 @@ data:
     # Available options:
     # trace,debug,info,warn,error,critical,off
     default_log_level = trace
+  layout.json: |
+    [
+        {
+            "type_alias":   "Foo",
+            "layout":       [
+                                {
+                                    "min_nodes_by_shard": [3],
+                                    "max_nodes_by_shard": [3],
+                                    "delivery_modes_by_shard": ["Ordered"],
+                                    "profiles_by_shard": ["VCS"]
+                                }
+                            ]
+        },
+        {
+            "type_alias":   "Bar",
+            "layout":       [
+                                {
+                                    "min_nodes_by_shard": [3],
+                                    "max_nodes_by_shard": [3],
+                                    "delivery_modes_by_shard": ["Ordered"],
+                                    "profiles_by_shard": ["DEFAULT"]
+                                }
+                            ]
+        }
+    ]

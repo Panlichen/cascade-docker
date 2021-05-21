@@ -3,7 +3,8 @@ MAINTAINER myles.l.pan@gmail.com
 
 COPY build/ /root/build
 COPY scripts/ /root/scripts
-ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=/lib:/usr/local/lib:$LD_LIBRARY_PATH
+ENV CPLUS_INCLUDE_PATH=/include:/usr/local/include:$CPLUS_INCLUDE_PATH
 ENV DERECHO_CONF_FILE=/root/derecho.cfg
 ARG CASCADE_BRANCH=master
 RUN ["chmod", "+x", "/root/build/build-derecho.sh"]

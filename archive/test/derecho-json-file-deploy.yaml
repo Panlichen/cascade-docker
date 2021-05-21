@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cascade-deploy
+  name: derecho-json-file-deploy
   # namespace: sriov-network-operator
   labels:
-    k8s-app: cascade-deploy
+    k8s-app: derecho-json-file-deploy
 spec:
-  replicas: 5
+  replicas: 6
   selector:
     matchLabels:
-      name: cascade-deploy
+      name: derecho-json-file-deploy
   template:
     metadata:
       labels:
-        name: cascade-deploy
+        name: derecho-json-file-deploy
       annotations:
         k8s.v1.cni.cncf.io/networks: sriov-net
     spec:
@@ -23,8 +23,8 @@ spec:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
       containers:
-      - name: cascade-deploy
-        image: poanpan/cascade:master
+      - name: derecho-json-file-deploy
+        image: poanpan/cascade:test-derecho
         imagePullPolicy: IfNotPresent
         securityContext:
           capabilities:
@@ -49,7 +49,9 @@ spec:
       volumes:
       - name: cfg-template
         configMap:
-          name: client-cfg-template
+          name: derecho-json-file-cfg-template
           items:
           - key: derecho.cfg.template
             path: derecho.cfg.template
+          - key: layout.json
+            path: layout.json
