@@ -1,7 +1,7 @@
 #! /bin/bash
 
 if [ $# != 1 ] ; then
-  echo "USAGE: $0 <string of deploy>"
+  echo "USAGE: $0 <a common string of deployed pods>"
   exit 1;
 fi
 
