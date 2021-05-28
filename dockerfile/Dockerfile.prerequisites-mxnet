@@ -1,0 +1,10 @@
+# The built docker image: poanpan/cascade:prerequisites-mxnet
+FROM poanpan/cascade:prerequisites-no-mxnet
+MAINTAINER myles.l.pan@gmail.com
+
+WORKDIR /root
+
+COPY prerequisites/ /root/prerequisites
+RUN ["chmod", "+x", "/root/prerequisites/install-mxnet.sh"]
+
+RUN ["bash", "/root/prerequisites/install-mxnet.sh"]

@@ -1,0 +1,13 @@
+# The built docker image: poanpan/cascade:prerequisites-no-mxnet
+FROM poanpan/mlnx_ofed_linux-5.3-1.0.0.1-ubuntu18.04
+MAINTAINER myles.l.pan@gmail.com
+
+WORKDIR /root
+
+COPY install-and-build-no-mxnet.sh /root/install-and-build-no-mxnet.sh
+COPY prerequisites/ /root/prerequisites
+ENV LD_LIBRARY_PATH=/lib:/usr/local/lib:$LD_LIBRARY_PATH
+ENV CPLUS_INCLUDE_PATH=/include:/usr/local/include:$CPLUS_INCLUDE_PATH
+RUN ["chmod", "+x", "/root/install-and-build-no-mxnet.sh"]
+
+RUN ["bash", "/root/install-and-build-no-mxnet.sh"]

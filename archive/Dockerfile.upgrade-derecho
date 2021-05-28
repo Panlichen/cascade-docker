@@ -1,4 +1,5 @@
-FROM poanpan/cascade:mxnet
+# The built docker image: poanpan/cascade:test-derecho
+FROM poanpan/cascade:prerequisites-no-mxnet
 MAINTAINER myles.l.pan@gmail.com
 
 COPY build/ /root/build

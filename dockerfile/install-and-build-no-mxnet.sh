@@ -3,6 +3,7 @@ apt-get clean
 
 # add gcc-8 packages
 apt-get -y update
+apt-get -y install apt-utils 
 apt-get install software-properties-common -y
 add-apt-repository ppa:ubuntu-toolchain-r/test -y
 apt-get -y update
@@ -11,9 +12,9 @@ update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 60 --slave /usr/bi
 update-alternatives --config gcc
 
 # install other tools and dependencies
-apt-get -y install autoconf vim net-tools libssl-dev libreadline-dev libsnappy-dev libc-ares-dev \
+apt-get -y install python3-distutils autoconf vim net-tools libssl-dev libreadline-dev libsnappy-dev libc-ares-dev \
 libboost-dev libboost-system-dev \
-libtool m4 automake wget curl make unzip iputils-ping git --fix-missing
+libtool m4 automake wget curl make unzip iputils-ping git  --fix-missing
 
 chmod +x prerequisites/install-cmake-3.18.sh
 prerequisites/install-cmake-3.18.sh
@@ -35,5 +36,3 @@ chmod +x prerequisites/install-linq.sh
 prerequisites/install-linq.sh
 chmod +x prerequisites/install-fuse.sh
 prerequisites/install-fuse.sh
-chmod +x prerequisites/install-mxnet.sh
-prerequisites/install-mxnet.sh
