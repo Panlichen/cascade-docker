@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: derecho-json-file-cfg-template
+  name: overlap-derecho-json-file-cfg-template
 data:
   derecho.cfg.template: |
     [DERECHO]
@@ -154,9 +154,9 @@ data:
             "type_alias":   "Foo",
             "layout":       [
                                 {
-                                    "min_nodes_by_shard": [1],
-                                    "max_nodes_by_shard": [3],
-                                    "reserved_node_id_by_shard":[[0, 1, 2]],
+                                    "min_nodes_by_shard": [2],
+                                    "max_nodes_by_shard": [4],
+                                    "reserved_node_id_by_shard":[[101, 102]],
                                     "delivery_modes_by_shard": ["Ordered"],
                                     "profiles_by_shard": ["VCS"]
                                 }
@@ -166,9 +166,9 @@ data:
             "type_alias":   "Bar",
             "layout":       [
                                 {
-                                    "min_nodes_by_shard": [1],
-                                    "max_nodes_by_shard": [3],
-                                    "reserved_node_id_by_shard":[[3, 4, 5]],
+                                    "min_nodes_by_shard": [2],
+                                    "max_nodes_by_shard": [4],
+                                    "reserved_node_id_by_shard":[[101, 102]],
                                     "delivery_modes_by_shard": ["Ordered"],
                                     "profiles_by_shard": ["DEFAULT"]
                                 }
