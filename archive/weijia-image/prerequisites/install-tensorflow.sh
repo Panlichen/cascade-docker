@@ -10,7 +10,7 @@ fi
 VERSION=$1
 ENGINE=$2
 FILENAME=libtensorflow-${ENGINE}-linux-x86_64-${VERSION}.tar.gz
-wget https://storage.googleapis.com/tensorflow/libtensorflow/${FILENAME}
+wget https://storage.googleapis.com/tensorflow/libtensorflow/${FILENAME} --no-check-certificate
 
 tar -C /usr/local -xzf ${FILENAME}
 

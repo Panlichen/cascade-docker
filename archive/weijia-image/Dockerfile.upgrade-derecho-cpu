@@ -1,0 +1,16 @@
+# The built docker image: poanpan/cascade:upgrade-derecho-cpu
+FROM poanpan/cascade:setup-cpu
+MAINTAINER myles.l.pan@gmail.com
+
+ENV DERECHO_CONF_FILE=/root/derecho.cfg
+COPY build/ /root/workspace/build
+COPY scripts/ /root/workspace/scripts
+WORKDIR /root/workspace/
+
+# control re-build both or just cascade
+# ARG BOTH=1
+# RUN if [ "$BOTH" = 1 ]; then build/build-derecho.sh Release USE_VERBS_API; else build/build-cascade.sh Release USE_VERBS_API; fi
+RUN ["build/build-derecho.sh", "Release", "USE_VERBS_API"]
+
+# TODO: rely on models downloaded on host machine, not a good way.
+COPY models /root/workspace/models

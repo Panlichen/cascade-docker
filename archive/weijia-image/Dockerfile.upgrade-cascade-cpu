@@ -1,0 +1,11 @@
+# The built docker image: poanpan/cascade:upgrade-cascade-cpu
+FROM poanpan/cascade:upgrade-derecho-cpu
+MAINTAINER myles.l.pan@gmail.com
+
+ENV DERECHO_CONF_FILE=/root/derecho.cfg
+COPY build/ /root/workspace/build
+COPY scripts/ /root/workspace/scripts
+WORKDIR /root/workspace/
+
+ARG CASCADE_BRANCH=object_pool
+RUN ["build/build-cascade.sh", "Release", "USE_VERBS_API"]

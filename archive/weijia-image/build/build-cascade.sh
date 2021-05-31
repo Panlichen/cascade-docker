@@ -11,6 +11,11 @@ fi
 git clone --recursive https://github.com/Panlichen/cascade.git -b ${CASCADE_BRANCH}
 cd cascade
 
+# TODO: rely on models downloaded on host machine, not a good way.
+cp /root/workspace/models/bcs-inference-model.tar.gz src/applications/demos/dairy_farm/
+cp /root/workspace/models/cow-id-model.tar.gz src/applications/demos/dairy_farm/
+cp /root/workspace/models/filter-model.tar.gz src/applications/demos/dairy_farm/
+
 # case insensitive for string comparison
 shopt -s nocasematch
 

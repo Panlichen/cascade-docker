@@ -1,9 +1,0 @@
-# The built docker image: poanpan/cascade:test[-no-cascade]
-FROM poanpan/cascade:test-derecho
-MAINTAINER myles.l.pan@gmail.com
-
-COPY build/ /root/build
-
-RUN ["chmod", "+x", "/root/build/build-cascade.sh"]
-ARG CASCADE_BRANCH=object_pool
-RUN ["/root/build/build-cascade.sh"]

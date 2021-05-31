@@ -2,7 +2,7 @@
 # install python opencv
 apt-get -y install python3-opencv
 # Download and unpack sources
-wget -O opencv.zip https://github.com/opencv/opencv/archive/master.zip
+wget -O opencv.zip https://github.com/opencv/opencv/archive/master.zip --no-check-certificate
 unzip opencv.zip
 # Create build directory
 mkdir -p build && cd build

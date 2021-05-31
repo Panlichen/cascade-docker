@@ -9,9 +9,9 @@ INSTALL_PREFIX=${HOME}/opt-dev
 INSTALL_TYPE=$1
 ZIP_FILE=libtorch-cxx11.zip
 if [ $INSTALL_TYPE == 'cpu' ]; then
-    wget -O $ZIP_FILE https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.8.1%2Bcpu.zip
+    wget -O $ZIP_FILE https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-1.8.1%2Bcpu.zip --no-check-certificate
 else
-    wget -O $ZIP_FILE https://download.pytorch.org/libtorch/cu111/libtorch-cxx11-abi-shared-with-deps-1.8.1%2Bcu111.zip
+    wget -O $ZIP_FILE https://download.pytorch.org/libtorch/cu111/libtorch-cxx11-abi-shared-with-deps-1.8.1%2Bcu111.zip --no-check-certificate
 fi
 unzip $ZIP_FILE
 cp -ar libtorch/* ${INSTALL_PREFIX}

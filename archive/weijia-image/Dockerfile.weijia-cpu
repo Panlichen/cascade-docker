@@ -1,4 +1,8 @@
+
+########## !!!!!!!!! NOT REALIABLE NOW !!!!!!!!!! ###########
+
 # The built docker image: poanpan/cascade:weijia-cpu
+# WARNING: given that cuda has been installed, cannot use cpu version torch/tensorflow
 FROM songweijia/devel:cascade-setup-ubuntu20.04
 MAINTAINER myles.l.pan@gmail.com
 
