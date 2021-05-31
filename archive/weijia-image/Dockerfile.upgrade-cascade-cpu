@@ -8,4 +8,4 @@ COPY scripts/ /root/workspace/scripts
 WORKDIR /root/workspace/
 
 ARG CASCADE_BRANCH=object_pool
-RUN ["build/build-cascade.sh", "Release", "USE_VERBS_API"]
+RUN ["build/build-cascade.sh", "Debug", "USE_VERBS_API"]

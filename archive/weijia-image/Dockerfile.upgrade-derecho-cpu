@@ -10,7 +10,10 @@ WORKDIR /root/workspace/
 # control re-build both or just cascade
 # ARG BOTH=1
 # RUN if [ "$BOTH" = 1 ]; then build/build-derecho.sh Release USE_VERBS_API; else build/build-cascade.sh Release USE_VERBS_API; fi
-RUN ["build/build-derecho.sh", "Release", "USE_VERBS_API"]
+
+#for debug:
+RUN ["apt", "install", "gdb", "-y"]
+RUN ["build/build-derecho.sh", "Debug", "USE_VERBS_API"]
 
 # TODO: rely on models downloaded on host machine, not a good way.
 COPY models /root/workspace/models
