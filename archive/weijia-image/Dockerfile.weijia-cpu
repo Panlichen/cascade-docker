@@ -1,0 +1,22 @@
+# The built docker image: poanpan/cascade:weijia-cpu
+FROM songweijia/devel:cascade-setup-ubuntu20.04
+MAINTAINER myles.l.pan@gmail.com
+
+WORKDIR /root/workspace/prerequisites
+RUN ["bash", "install-ann.sh"]
+RUN ["bash", "install-cppflow.sh"]
+RUN ["bash", "install-libtorch.sh", "cpu"]
+RUN ["bash", "install-opencv.sh"]
+RUN ["bash", "install-tensorflow.sh", "2.4.1", "cpu"]
+
+ENV LD_LIBRARY_PATH=/root/opt-dev/lib:/lib:/usr/local/lib:$LD_LIBRARY_PATH
+ENV CPLUS_INCLUDE_PATH=/root/opt-dev/include:/include:/usr/local/include:$CPLUS_INCLUDE_PATH
+# set PATH for cmake to find packages installed in /root/opt-dev
+ENV PATH=/root/opt-dev/bin/:$PATH
+ENV DERECHO_CONF_FILE=/root/derecho.cfg
+COPY build/ /root/workspace/build
+COPY scripts/ /root/workspace/scripts
+
+WORKDIR /root/workspace/
+COPY install-fuse.sh /root/workspace/install-fuse.sh
+RUN ["bash", "install-fuse.sh"]

@@ -1,0 +1,12 @@
+# The built docker image: poanpan/cascade:test-derecho
+FROM poanpan/cascade:weijia-cpu
+MAINTAINER myles.l.pan@gmail.com
+
+COPY build/ /root/build
+COPY scripts/ /root/scripts
+ENV LD_LIBRARY_PATH=/lib:/usr/local/lib:$LD_LIBRARY_PATH
+ENV CPLUS_INCLUDE_PATH=/include:/usr/local/include:$CPLUS_INCLUDE_PATH
+ENV DERECHO_CONF_FILE=/root/derecho.cfg
+RUN ["chmod", "+x", "/root/build/build-derecho.sh"]
+RUN ["chmod", "+x", "/root/scripts/config-cascade.sh"]
+RUN ["bash", "/root/build/build-derecho.sh"]
