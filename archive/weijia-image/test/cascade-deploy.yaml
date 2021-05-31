@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cascade-deploy
+  # namespace: sriov-network-operator
+  labels:
+    k8s-app: cascade-deploy
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      name: cascade-deploy
+  template:
+    metadata:
+      labels:
+        name: cascade-deploy
+      annotations:
+        k8s.v1.cni.cncf.io/networks: sriov-net
+    spec:
+      tolerations:
+      # this toleration is to have the daemonset runnable on master nodes
+      # remove it if your masters can't run pods
+      - key: node-role.kubernetes.io/master
+        effect: NoSchedule
+      containers:
+      - name: cascade-deploy
+        image: poanpan/cascade:upgrade-cascade-cpu
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          capabilities:
+            add: [ "IPC_LOCK" ]
+        resources:
+          requests: 
+            cpu: "1000m"
+            memory: "500Mi"
+            openshift.io/mlx5_vf: 1
+          limits:
+            cpu: "2000m"
+            memory: "1000Mi"
+            openshift.io/mlx5_vf: 1
+        command:
+          - "sleep"
+        args:
+          - "2592000" # 3600 * 24 * 30
+        volumeMounts:
+        - name: cfg-template
+          mountPath: /root/config
+      restartPolicy: Always
+      volumes:
+      - name: cfg-template
+        configMap:
+          name: cascade-cfg-template
+          items:
+          - key: derecho.cfg.template
+            path: derecho.cfg.template
