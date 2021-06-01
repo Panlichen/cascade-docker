@@ -30,8 +30,8 @@ chmod +x prerequisites/install-mutils-tasks.sh
 prerequisites/install-mutils-tasks.sh
 chmod +x prerequisites/install-json.sh
 prerequisites/install-json.sh
-chmod +x prerequisites/install-openssl-1.1.1.sh
-prerequisites/install-openssl-1.1.1.sh
+# chmod +x prerequisites/install-openssl-1.1.1.sh
+# prerequisites/install-openssl-1.1.1.sh
 chmod +x prerequisites/install-linq.sh
 prerequisites/install-linq.sh
 chmod +x prerequisites/install-fuse.sh

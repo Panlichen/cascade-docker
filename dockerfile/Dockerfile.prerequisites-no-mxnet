@@ -6,8 +6,8 @@ WORKDIR /root
 
 COPY install-and-build-no-mxnet.sh /root/install-and-build-no-mxnet.sh
 COPY prerequisites/ /root/prerequisites
-ENV LD_LIBRARY_PATH=/lib:/usr/local/lib:$LD_LIBRARY_PATH
-ENV CPLUS_INCLUDE_PATH=/include:/usr/local/include:$CPLUS_INCLUDE_PATH
+# ENV LD_LIBRARY_PATH=/lib:/usr/local/lib:$LD_LIBRARY_PATH
+# ENV CPLUS_INCLUDE_PATH=/include:/usr/local/include:$CPLUS_INCLUDE_PATH
 RUN ["chmod", "+x", "/root/install-and-build-no-mxnet.sh"]
 
 RUN ["bash", "/root/install-and-build-no-mxnet.sh"]
