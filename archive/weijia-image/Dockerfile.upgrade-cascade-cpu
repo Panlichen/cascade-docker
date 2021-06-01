@@ -22,4 +22,5 @@ COPY scripts/ /root/workspace/scripts
 WORKDIR /root/workspace/
 
 ARG CASCADE_BRANCH=object_pool
+ENV CASCADE_BRANCH=$CASCADE_BRANCH
 RUN ["build/build-cascade.sh", "Debug", "USE_VERBS_API"]

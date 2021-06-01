@@ -11,5 +11,5 @@ RUN ["bash", "install-ann.sh"]
 RUN ["bash", "install-cppflow.sh"]
 RUN ["bash", "install-libtorch.sh", "cpu"]
 RUN ["bash", "install-opencv.sh"]
-RUN ["bash", "install-tensorflow.sh", "2.4.1", "cpu"]
+RUN ["bash", "install-tensorflow.sh", "2.5.0", "cpu"]
 
