@@ -176,7 +176,7 @@ data:
     # default log level
     # Available options:
     # trace,debug,info,warn,error,critical,off
-    default_log_level = info
+    default_log_level = debug
 
     # cascade service configuration
     # TODO: add document for how to setup a cascade service.
