@@ -3,6 +3,20 @@ FROM poanpan/cascade:upgrade-derecho-cpu
 MAINTAINER myles.l.pan@gmail.com
 
 ENV DERECHO_CONF_FILE=/root/derecho.cfg
+
+ENV LOCAL_OPT=/root/opt-dev
+ENV C_INCLUDE_PATH=$LOCAL_OPT/include
+ENV CPLUS_INCLUDE_PATH=$LOCAL_OPT/include
+ENV CMAKE_PREFIX_PATH=$LOCAL_OPT/
+ENV LIBRARY_PATH=$LOCAL_OPT/lib/
+ENV LD_LIBRARY_PATH=$LOCAL_OPT/lib/
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+
+# ENV LD_LIBRARY_PATH=/root/opt-dev/lib:$LD_LIBRARY_PATH
+# ENV CPLUS_INCLUDE_PATH=/root/opt-dev/include:$CPLUS_INCLUDE_PATH
+# # set PATH for cmake to find packages installed in /root/opt-dev
+# ENV PATH=/root/opt-dev/bin/:$PATH
+
 COPY build/ /root/workspace/build
 COPY scripts/ /root/workspace/scripts
 WORKDIR /root/workspace/

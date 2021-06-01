@@ -13,7 +13,3 @@ RUN ["bash", "install-libtorch.sh", "cpu"]
 RUN ["bash", "install-opencv.sh"]
 RUN ["bash", "install-tensorflow.sh", "2.4.1", "cpu"]
 
-ENV LD_LIBRARY_PATH=/root/opt-dev/lib:$LD_LIBRARY_PATH
-ENV CPLUS_INCLUDE_PATH=/root/opt-dev/include:$CPLUS_INCLUDE_PATH
-# set PATH for cmake to find packages installed in /root/opt-dev
-ENV PATH=/root/opt-dev/bin/:$PATH
