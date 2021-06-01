@@ -11,14 +11,14 @@ YELLOW='\033[0;33m'
 NC='\033[0m' # No Color
 
 TEMPLATE=/root/config/derecho.cfg.template
-CONFIG=derecho.cfg
+CONFIG=/root/derecho.cfg
 
 LEADER_IP=$1
 LOCAL_IP=$2
 LOCAL_ID=$3
 PROVIDER=$4
 if [ -z $PROVIDER ]; then
-  PROVIDER='sockets'
+  PROVIDER='tcp'
 fi
 DOMAIN=$5
 if [ -z $DOMAIN ]; then
@@ -40,8 +40,8 @@ cat ${TEMPLATE}| \
 ERRCODE=$?
 if [ ${ERRCODE} -eq 0 ]; then
   echo -e "On node ${LOCAL_IP} (id: ${LOCAL_ID}, leader: ${LEADER_IP})"
-  echo -e "${GREEN}Configuration is successfully generated in file: `pwd`/${CONFIG}."
-  echo -e "The 'DERECHO_CONF_FILE' environment variable has been set to this file: `pwd`/${CONFIG}${NC}"
+  echo -e "${GREEN}Configuration is successfully generated in file: ${CONFIG}."
+  echo -e "The 'DERECHO_CONF_FILE' environment variable has been set to this file: ${CONFIG}${NC}"
   echo -e "=========================\n"
 else
   echo -e "${RED}Configuration generation failed with err:${ERRCODE}.${NC}"

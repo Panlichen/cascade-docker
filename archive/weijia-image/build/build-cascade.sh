@@ -91,6 +91,10 @@ if [[ $2 == "USE_VERBS_API" ]]; then
     cmake_defs="${cmake_defs} -DUSE_VERBS_API=1"
 fi
 
+echo LIBRARY_PATH $LIBRARY_PATH
+echo LD_LIBRARY_PATH $LD_LIBRARY_PATH
+echo CMAKE_PREFIX_PATH $CMAKE_PREFIX_PATH
+
 # begin building...
 rm -rf ${build_path} 2>/dev/null
 mkdir ${build_path}
