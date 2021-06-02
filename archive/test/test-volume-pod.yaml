@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-volume-pod0
+  namespace: kube-system
+spec:
+  hostNetwork: true
+  containers:
+  - name: samplepod
+    command:
+      - "sleep"
+    args:
+      - "2592000" # 3600 * 24 * 30
+    env:
+    - name: KUBECONFIG
+      value: /etc/kubernetes/kubelet.conf
+    image: poanpan/ubuntu-net-rdma
+    volumeMounts:
+      - name: device-plugin
+        mountPath: /var/lib/kubelet/device-plugins
+  volumes:
+    - name: device-plugin
+      hostPath:
+        path: /var/lib/kubelet/device-plugins
+  nodeName: node0
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-volume-pod1
+  namespace: kube-system
+spec:
+  hostNetwork: true
+  containers:
+  - name: samplepod
+    command:
+      - "sleep"
+    args:
+      - "2592000" # 3600 * 24 * 30
+    env:
+    - name: KUBECONFIG
+      value: /etc/kubernetes/kubelet.conf
+    image: poanpan/ubuntu-net-rdma
+    volumeMounts:
+      - name: device-plugin
+        mountPath: /var/lib/kubelet/device-plugins
+  volumes:
+    - name: device-plugin
+      hostPath:
+        path: /var/lib/kubelet/device-plugins
+  nodeName: node1
