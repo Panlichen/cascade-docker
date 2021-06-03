@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cascade-deploy
+  name: cascade-gpu-deploy
   # namespace: sriov-network-operator
   labels:
-    k8s-app: cascade-deploy
+    k8s-app: cascade-gpu-deploy
 spec:
   replicas: 5
   selector:
     matchLabels:
-      name: cascade-deploy
+      name: cascade-gpu-deploy
   template:
     metadata:
       labels:
-        name: cascade-deploy
+        name: cascade-gpu-deploy
       annotations:
         k8s.v1.cni.cncf.io/networks: sriov-net
     spec:
@@ -23,7 +23,7 @@ spec:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
       containers:
-      - name: cascade-deploy
+      - name: cascade-gpu-deploy
         image: poanpan/cascade:upgrade-cascade-cpu
         imagePullPolicy: IfNotPresent
         securityContext:
