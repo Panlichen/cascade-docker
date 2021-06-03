@@ -1,0 +1,15 @@
+# The built docker image: poanpan/cascade:upgrade-derecho-gpu
+FROM poanpan/cascade:weijia-gpu
+MAINTAINER myles.l.pan@gmail.com
+
+ENV DERECHO_CONF_FILE=/root/derecho.cfg
+COPY build/ /root/workspace/build
+COPY scripts/ /root/workspace/scripts
+WORKDIR /root/workspace/
+
+#for debug:
+RUN ["apt", "install", "gdb", "-y"]
+RUN ["build/build-derecho.sh", "Debug", "USE_VERBS_API"]
+
+# TODO: rely on models downloaded on host machine, not a good way.
+COPY models /root/workspace/models
