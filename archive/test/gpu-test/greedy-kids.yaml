@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: greedy-kids
+  labels:
+    app: greedy-kids
+
+spec:
+  replicas: 20
+
+  selector: # define how the deployment finds the pods it mangages
+    matchLabels:
+      app: greedy-kids
+
+  template: # define the pods specifications
+    metadata:
+      labels:
+        app: greedy-kids
+
+    spec:
+      containers:
+      - name: greedy-kids
+        image: nvidia/cuda:11.0-base
+        command:
+          - "sleep"
+        args:
+          - "2592000" # 3600 * 24 * 30
