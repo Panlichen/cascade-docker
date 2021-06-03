@@ -17,6 +17,7 @@ spec:
       annotations:
         k8s.v1.cni.cncf.io/networks: sriov-net
     spec:
+      schedulerName: yoda-scheduler2
       tolerations:
       # this toleration is to have the daemonset runnable on master nodes
       # remove it if your masters can't run pods
@@ -24,7 +25,7 @@ spec:
         effect: NoSchedule
       containers:
       - name: cascade-gpu-deploy
-        image: poanpan/cascade:upgrade-cascade-cpu
+        image: poanpan/cascade:upgrade-cascade-gpu
         imagePullPolicy: IfNotPresent
         securityContext:
           capabilities:

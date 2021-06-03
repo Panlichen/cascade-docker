@@ -19,6 +19,7 @@ spec:
         app: greedy-kids
 
     spec:
+      schedulerName: yoda-scheduler2
       containers:
       - name: greedy-kids
         image: nvidia/cuda:11.0-base
