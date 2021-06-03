@@ -1,0 +1,12 @@
+# The built docker image: poanpan/cascade:upgrade-cascade-gpu
+FROM poanpan/cascade:upgrade-derecho-gpu
+MAINTAINER myles.l.pan@gmail.com
+
+ENV DERECHO_CONF_FILE=/root/derecho.cfg
+COPY build/ /root/workspace/build
+COPY scripts/ /root/workspace/scripts
+WORKDIR /root/workspace/
+
+ARG CASCADE_BRANCH=object_pool
+ENV CASCADE_BRANCH=$CASCADE_BRANCH
+RUN ["build/build-cascade.sh", "Debug", "USE_VERBS_API"]

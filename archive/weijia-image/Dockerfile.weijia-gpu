@@ -1,0 +1,19 @@
+# The built docker image: poanpan/cascade:weijia-gpu
+# WARNING: given that cuda has been installed, cannot use cpu version torch/tensorflow
+FROM songweijia/devel:cascade-setup-ubuntu20.04
+MAINTAINER myles.l.pan@gmail.com
+
+WORKDIR /root/workspace/prerequisites
+RUN ["bash", "install-ann.sh"]
+RUN ["bash", "install-cppflow.sh"]
+RUN ["bash", "install-libtorch.sh", "gpu"]
+RUN ["bash", "install-opencv.sh"]
+RUN ["bash", "install-tensorflow.sh", "2.5.0", "gpu"]
+
+ENV LOCAL_OPT=/root/opt-dev
+ENV C_INCLUDE_PATH=$LOCAL_OPT/include
+ENV CPLUS_INCLUDE_PATH=$LOCAL_OPT/include
+ENV CMAKE_PREFIX_PATH=$LOCAL_OPT/
+ENV LIBRARY_PATH=$LOCAL_OPT/lib/
+ENV LD_LIBRARY_PATH=$LOCAL_OPT/lib/
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
