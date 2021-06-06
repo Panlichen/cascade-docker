@@ -1,22 +1,5 @@
 #!/bin/bash
 
-set -eu
-WORKPATH="${HOME}/workspace"
-cd ${WORKPATH}
-
-if [ -d "cascade" ];then
-  rm -rf cascade
-fi
-
-git clone --recursive https://github.com/Panlichen/cascade.git -b ${CASCADE_BRANCH}
-# git clone --recursive https://github.com/Derecho-Project/cascade.git -b object_pool
-cd cascade
-
-# TODO: rely on models downloaded on host machine, not a good way.
-cp /root/workspace/models/bcs-inference-model.tar.gz src/applications/demos/dairy_farm/
-cp /root/workspace/models/cow-id-model.tar.gz src/applications/demos/dairy_farm/
-cp /root/workspace/models/filter-model.tar.gz src/applications/demos/dairy_farm/
-
 # case insensitive for string comparison
 shopt -s nocasematch
 
@@ -84,7 +67,7 @@ fi
 
 build_type=$1
 # install_prefix="/usr/local"
-install_prefix="/root/opt-dev"
+install_prefix="/"
 cmake_defs="-DCMAKE_BUILD_TYPE=${build_type} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_INSTALL_PREFIX=${install_prefix}"
 build_path="build-${build_type}"
 
@@ -92,23 +75,10 @@ if [[ $2 == "USE_VERBS_API" ]]; then
     cmake_defs="${cmake_defs} -DUSE_VERBS_API=1"
 fi
 
-echo LIBRARY_PATH $LIBRARY_PATH
-echo LD_LIBRARY_PATH $LD_LIBRARY_PATH
-echo CMAKE_PREFIX_PATH $CMAKE_PREFIX_PATH
-
-echo cmake --version
-cmake --version
-echo g++ --version
-g++ --version
-
 # begin building...
 rm -rf ${build_path} 2>/dev/null
 mkdir ${build_path}
 cd ${build_path}
 cmake ${cmake_defs} ..
 make -j `nproc` 2>err.log
-
-make install
-echo CASCADE_BRANCH: ${CASCADE_BRANCH}
-
 cd ..
