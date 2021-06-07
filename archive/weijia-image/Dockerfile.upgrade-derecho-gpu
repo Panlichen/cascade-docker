@@ -9,4 +9,5 @@ WORKDIR /root/workspace/
 
 #for debug:
 RUN ["apt", "install", "gdb", "-y"]
-RUN ["build/build-derecho.sh", "Debug", "USE_VERBS_API"]
+# RUN ["build/build-derecho.sh", "Debug", "USE_VERBS_API"]
+RUN ["build/build-derecho.sh", "Debug", "no"]
