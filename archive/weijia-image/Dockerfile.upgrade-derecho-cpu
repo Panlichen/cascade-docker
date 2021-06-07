@@ -14,6 +14,3 @@ WORKDIR /root/workspace/
 #for debug:
 RUN ["apt", "install", "gdb", "-y"]
 RUN ["build/build-derecho.sh", "Debug", "USE_VERBS_API"]
-
-# TODO: rely on models downloaded on host machine, not a good way.
-COPY models /root/workspace/models

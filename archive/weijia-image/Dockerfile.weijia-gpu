@@ -17,3 +17,6 @@ ENV CMAKE_PREFIX_PATH=$LOCAL_OPT/
 ENV LIBRARY_PATH=$LOCAL_OPT/lib/
 ENV LD_LIBRARY_PATH=$LOCAL_OPT/lib/
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
+
+# TODO: rely on models downloaded on host machine, not a good way.
+COPY models /root/workspace/models
