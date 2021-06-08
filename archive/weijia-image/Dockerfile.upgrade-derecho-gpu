@@ -9,5 +9,16 @@ WORKDIR /root/workspace/
 
 #for debug:
 RUN ["apt", "install", "gdb", "-y"]
+RUN ["apt", "install", "clang-format", "-y"]
+
+# ~/.vim/vimrc
+# map <C-K> :pyf /usr/share/clang/clang-format-10/clang-format.py<cr>
+# imap <C-K> :pyf /usr/share/clang/clang-format-10/clang-format.py<cr>
+
+# wget https://bootstrap.pypa.io/get-pip.py
+# python get-pip.py
+# pip install pyf.services
+
+
 # RUN ["build/build-derecho.sh", "Debug", "USE_VERBS_API"]
 RUN ["build/build-derecho.sh", "Debug", "no"]
