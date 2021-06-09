@@ -56,14 +56,16 @@ colorful_print() {
 }
 
 if [[ $# -lt 1 ]]; then
-    colorful_print orange "USAGE: $0 <prefix>"
-    colorful_print orange "example: $0 cascade-gpu"
-    exit -1
+    colorful_print blue "You can also specify a prefix: $0 <prefix>"
+    colorful_print blue "example: $0 cascade-gpu"
+    colorful_print green "Now retrieve all containers"
+    sudo docker container ls > info.txt
+else
+    prefix=$1
+    sudo docker container ls | grep $prefix > info.txt
 fi
 
-prefix=$1
-sudo docker container ls | grep $prefix > info.txt
-IDs=`awk '{print $1}' info.txt`
+IDs=`awk 'NR>2{print $1}' info.txt`
 
 ID_ARRAY=()
 NAME_ARRAY=()
