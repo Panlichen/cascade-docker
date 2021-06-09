@@ -65,7 +65,7 @@ else
     sudo docker container ls | grep $prefix > info.txt
 fi
 
-IDs=`awk 'NR>2{print $1}' info.txt`
+IDs=`awk '{print $1}' info.txt`
 
 ID_ARRAY=()
 NAME_ARRAY=()
@@ -77,13 +77,15 @@ Memory_ARRAY=()
 idx=0
 for ID in ${IDs}
 do
-    ID_ARRAY[${idx}]=$ID
-    PID_ARRAY[${idx}]=`sudo docker inspect -f '{{.State.Pid}}' $ID`
-    NAME_ARRAY[${idx}]=`sudo docker inspect -f '{{.Name}}' $ID`
-    CMD_ARRAY[${idx}]=`sudo docker inspect -f '{{.Path}}' $ID`
-    OOMKilled_ARRAY[${idx}]=`sudo docker inspect -f '{{.State.OOMKilled}}' $ID`
-    Memory_ARRAY[${idx}]=`sudo docker inspect -f '{{.HostConfig.Memory}}' $ID`
-    idx=$[idx+1]
+    if [ $ID != "CONTAINER" ];then
+        ID_ARRAY[${idx}]=$ID
+        PID_ARRAY[${idx}]=`sudo docker inspect -f '{{.State.Pid}}' $ID`
+        NAME_ARRAY[${idx}]=`sudo docker inspect -f '{{.Name}}' $ID`
+        CMD_ARRAY[${idx}]=`sudo docker inspect -f '{{.Path}}' $ID`
+        OOMKilled_ARRAY[${idx}]=`sudo docker inspect -f '{{.State.OOMKilled}}' $ID`
+        Memory_ARRAY[${idx}]=`sudo docker inspect -f '{{.HostConfig.Memory}}' $ID`
+        idx=$[idx+1]
+    fi
 done
 
 echo "NAME CMD PID Memory OOMKilled CONTAIER_ID" > container_pid.txt
