@@ -69,8 +69,9 @@ data:
     # block size depends on your max_payload_size.
     # It is only relevant if you are ever going to send a message using RDMC.
     # In that case, it should be set to the same value as the max_payload_size,
-    # if the max_payload_size is around 1 MB. For very large messages, the block # size should be a few MBs (1 is fine).
-    block_size = 10240
+    # if the max_payload_size is around 1 MB. For very large messages, the block
+    # size should be a few MBs (1 is fine).
+    block_size = 1048576
     # message window size
     # the length of the message pipeline
     window_size = 16
