@@ -82,6 +82,9 @@ if [[ $1 == "Clear" ]]; then
     exit 0
 fi
 
+# install pybind11
+python -m pip install "pybind11[global]"
+
 build_type=$1
 # install_prefix="/usr/local"
 install_prefix="/root/opt-dev"
