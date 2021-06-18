@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cascade-gpu-cfg-template
+  name: cascade-node0-gpu-cfg-template
 data:
   derecho.cfg.template: |
     [DERECHO]
@@ -284,22 +284,23 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cascade-gpu-deploy
+  name: cascade-node0-gpu-deploy
   # namespace: sriov-network-operator
   labels:
-    k8s-app: cascade-gpu-deploy
+    k8s-app: cascade-node0-gpu-deploy
 spec:
   replicas: 5
   selector:
     matchLabels:
-      name: cascade-gpu-deploy
+      name: cascade-node0-gpu-deploy
   template:
     metadata:
       labels:
-        name: cascade-gpu-deploy
+        name: cascade-node0-gpu-deploy
       annotations:
         k8s.v1.cni.cncf.io/networks: sriov-net
     spec:
+      nodeName: node0
       schedulerName: yoda-scheduler
       tolerations:
       # this toleration is to have the daemonset runnable on master nodes
@@ -307,7 +308,7 @@ spec:
       - key: node-role.kubernetes.io/master
         effect: NoSchedule
       containers:
-      - name: cascade-gpu-deploy
+      - name: cascade-node0-gpu-deploy
         image: poanpan/cascade:upgrade-cascade-gpu
         imagePullPolicy: IfNotPresent
         securityContext:
@@ -330,7 +331,7 @@ spec:
       volumes:
       - name: cfg-template
         configMap:
-          name: cascade-gpu-cfg-template
+          name: cascade-node0-gpu-cfg-template
           items:
           - key: derecho.cfg.template
             path: derecho.cfg.template

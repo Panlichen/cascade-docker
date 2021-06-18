@@ -4,10 +4,13 @@ MAINTAINER myles.l.pan@gmail.com
 
 ENV DERECHO_CONF_FILE=/root/derecho.cfg
 COPY build/ /root/workspace/build
-COPY scripts/ /root/workspace/scripts
-WORKDIR /root/workspace/
 
 ARG CASCADE_BRANCH=master
 ENV CASCADE_BRANCH=$CASCADE_BRANCH
 # RUN ["build/build-cascade.sh", "Debug", "USE_VERBS_API"]
 RUN ["build/build-cascade.sh", "Debug", "no"]
+
+COPY scripts/ /root/workspace/scripts
+RUN ["scripts/prepare-regression-test.sh"]
+CMD /usr/sbin/sshd && tail -f /var/log/wtmp
+WORKDIR /root/workspace/
