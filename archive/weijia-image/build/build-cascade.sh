@@ -114,4 +114,5 @@ make -j `nproc` 2>err.log
 make install
 echo CASCADE_BRANCH: ${CASCADE_BRANCH}
 
-cd ..
+cd src/applications/demos/dairy_farm
+bash extract_model.sh

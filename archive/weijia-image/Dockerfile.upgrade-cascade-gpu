@@ -12,5 +12,4 @@ RUN ["build/build-cascade.sh", "Debug", "no"]
 
 COPY scripts/ /root/workspace/scripts
 RUN ["scripts/prepare-regression-test.sh"]
-CMD /usr/sbin/sshd && tail -f /var/log/wtmp
 WORKDIR /root/workspace/
