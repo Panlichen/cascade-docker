@@ -301,7 +301,6 @@ spec:
         k8s.v1.cni.cncf.io/networks: sriov-net
     spec:
       nodeName: node0
-      schedulerName: yoda-scheduler
       tolerations:
       # this toleration is to have the daemonset runnable on master nodes
       # remove it if your masters can't run pods

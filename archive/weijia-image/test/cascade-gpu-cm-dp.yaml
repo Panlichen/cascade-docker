@@ -300,7 +300,6 @@ spec:
       annotations:
         k8s.v1.cni.cncf.io/networks: sriov-net
     spec:
-      schedulerName: yoda-scheduler
       tolerations:
       # this toleration is to have the daemonset runnable on master nodes
       # remove it if your masters can't run pods
@@ -320,7 +319,7 @@ spec:
             openshift.io/mlx5_vf: 1
           limits:
             cpu: "10000m"
-            memory: "100000Mi"
+            memory: "20000Mi"
             openshift.io/mlx5_vf: 1
         command: ['sh', '-c', '/usr/sbin/sshd && sleep 2592000']
         volumeMounts:
@@ -334,3 +333,5 @@ spec:
           items:
           - key: derecho.cfg.template
             path: derecho.cfg.template
+          - key: layout.json
+            path: layout.json
