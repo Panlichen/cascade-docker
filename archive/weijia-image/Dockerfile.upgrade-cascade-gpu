@@ -7,6 +7,7 @@ COPY build/ /root/workspace/build
 
 ARG CASCADE_BRANCH=master
 ENV CASCADE_BRANCH=$CASCADE_BRANCH
+
 # RUN ["build/build-cascade.sh", "Debug", "USE_VERBS_API"]
 RUN ["build/build-cascade.sh", "Debug", "no"]
 

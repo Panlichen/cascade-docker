@@ -8,7 +8,8 @@ if [ -d "derecho" ];then
   rm -rf derecho
 fi
 
-git clone --recursive https://github.com/Panlichen/derecho.git -b layout-conf
+# git clone --recursive https://github.com/Panlichen/derecho.git -b layout-conf
+git clone --recursive https://github.com/Derecho-Project/derecho.git
 cd derecho
 
 # case insensitive for string comparison
