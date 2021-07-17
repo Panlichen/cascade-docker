@@ -5,6 +5,8 @@ MAINTAINER myles.l.pan@gmail.com
 ENV DERECHO_CONF_FILE=/root/derecho.cfg
 COPY build/ /root/workspace/build
 
+ARG REPO=Derecho-Project
+ENV REPO=$REPO
 ARG CASCADE_BRANCH=master
 ENV CASCADE_BRANCH=$CASCADE_BRANCH
 

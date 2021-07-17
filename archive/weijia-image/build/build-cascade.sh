@@ -8,8 +8,7 @@ if [ -d "cascade" ];then
   rm -rf cascade
 fi
 
-# git clone --recursive https://github.com/Panlichen/cascade.git -b ${CASCADE_BRANCH}
-git clone --recursive https://github.com/Derecho-Project/cascade.git -b ${CASCADE_BRANCH}
+git clone --recursive https://github.com/${REPO}/cascade.git -b ${CASCADE_BRANCH}
 cd cascade
 
 # TODO: rely on models downloaded on host machine, not a good way.
@@ -92,6 +91,9 @@ install_prefix="/root/opt-dev"
 # install rpclib
 bash scripts/prerequisites/install-rpclib.sh ${install_prefix}
 
+# install httplib
+bash scripts/prerequisites/install-httplib.sh ${install_prefix}
+
 cmake_defs="-DCMAKE_BUILD_TYPE=${build_type} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_INSTALL_PREFIX=${install_prefix}"
 build_path="build-${build_type}"
 
@@ -116,6 +118,7 @@ cmake ${cmake_defs} ..
 make -j `nproc` 2>err.log
 
 make install
+echo REPO: ${REPO}
 echo CASCADE_BRANCH: ${CASCADE_BRANCH}
 
 cd src/applications/demos/dairy_farm
