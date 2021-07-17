@@ -8,7 +8,7 @@ metadata:
 spec:
   restartPolicy: OnFailure
   containers:
-  - image: poanpan/mlnx_ofed_linux-5.3-1.0.0.1-ubuntu18.04
+  - image: songweijia/devel:cascade-setup-ubuntu20.04
     name: mofed-test-ctr
     securityContext:
       capabilities:
@@ -38,7 +38,7 @@ metadata:
 spec:
   restartPolicy: OnFailure
   containers:
-  - image: poanpan/mlnx_ofed_linux-5.3-1.0.0.1-ubuntu18.04
+  - image: songweijia/devel:cascade-setup-ubuntu20.04
     name: mofed-test-ctr
     securityContext:
       capabilities:
