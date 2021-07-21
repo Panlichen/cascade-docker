@@ -81,18 +81,9 @@ if [[ $1 == "Clear" ]]; then
     exit 0
 fi
 
-# install pybind11
-python -m pip install "pybind11[global]"
-
 build_type=$1
 # install_prefix="/usr/local"
 install_prefix="/root/opt-dev"
-
-# install rpclib
-bash scripts/prerequisites/install-rpclib.sh ${install_prefix}
-
-# install httplib
-bash scripts/prerequisites/install-httplib.sh ${install_prefix}
 
 cmake_defs="-DCMAKE_BUILD_TYPE=${build_type} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_INSTALL_PREFIX=${install_prefix}"
 build_path="build-${build_type}"

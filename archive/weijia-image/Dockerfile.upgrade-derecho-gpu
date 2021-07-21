@@ -5,7 +5,17 @@ MAINTAINER myles.l.pan@gmail.com
 ENV DERECHO_CONF_FILE=/root/derecho.cfg
 COPY build/ /root/workspace/build
 COPY scripts/ /root/workspace/scripts
+COPY prerequisites/ /root/workspace/prerequisites
+
+WORKDIR /root/workspace/prerequisites
+RUN ["bash", "install-httplib.sh", "/root/opt-dev"]
+RUN ["bash", "install-rpclib.sh", "/root/opt-dev"]
+RUN ["bash", "python-stuff.sh"]
+
 WORKDIR /root/workspace/
+
+COPY scripts/ /root/workspace/scripts
+RUN ["scripts/prepare-regression-test.sh"]
 
 #for debug:
 RUN ["apt", "install", "gdb", "-y"]

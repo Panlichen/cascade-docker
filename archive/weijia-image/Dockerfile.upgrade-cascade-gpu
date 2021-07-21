@@ -13,6 +13,4 @@ ENV CASCADE_BRANCH=$CASCADE_BRANCH
 # RUN ["build/build-cascade.sh", "Debug", "USE_VERBS_API"]
 RUN ["build/build-cascade.sh", "Debug", "no"]
 
-COPY scripts/ /root/workspace/scripts
-RUN ["scripts/prepare-regression-test.sh"]
 WORKDIR /root/workspace/
