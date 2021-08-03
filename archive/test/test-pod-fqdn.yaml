@@ -10,11 +10,11 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: test-pod0
+  name: test-pod-fqdn0
   labels:
     name: fqdn-tester
 spec:
-  hostname: test-pod0
+  hostname: test-pod-fqdn0
   subdomain: cascade
   containers:
   - name: samplepod
@@ -28,11 +28,11 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: test-pod1
+  name: test-pod-fqdn1
   labels:
     name: fqdn-tester
 spec:
-  hostname: test-pod1
+  hostname: test-pod-fqdn1
   subdomain: cascade
   containers:
   - name: samplepod
