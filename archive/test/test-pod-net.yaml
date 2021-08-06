@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cascade
+spec:
+  selector:
+    name: net-tester
+  clusterIP: None
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-net0
+  labels:
+    name: net-tester
+spec:
+  hostname: test-pod-net0
+  subdomain: cascade
+  containers:
+  - name: samplepod
+    command:
+      - "sleep"
+    args:
+      - "2592000" # 3600 * 24 * 30
+    image: poanpan/ubuntu18.04.net-tool:latest
+  nodeName: node0
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod-net1
+  labels:
+    name: net-tester
+spec:
+  hostname: test-pod-net1
+  subdomain: cascade
+  containers:
+  - name: samplepod
+    command:
+      - "sleep"
+    args:
+      - "2592000" # 3600 * 24 * 30
+    image: poanpan/ubuntu18.04.net-tool:latest
+  nodeName: node1

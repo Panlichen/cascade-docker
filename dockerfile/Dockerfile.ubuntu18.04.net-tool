@@ -1,0 +1,7 @@
+# The built docker image: poanpan/ubuntu18.04.net-tool:latest
+FROM ubuntu:18.04
+
+# avoiding interactively select the geographic area
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends net-tools wget curl iputils-ping lsb-core
